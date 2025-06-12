@@ -72,32 +72,43 @@ div.GameLayer{
     height:100%;
     background-color:red;
 }
+/* 로비화면 메뉴버튼 */
 .menuSelectionBg{
     position:absolute;
-    left:50%;
-    margin-left:-250px;
+    left:0;
     bottom:0;
-    width:500px;
-    height:400px;
-    background-color:gray;
+    width:200px;
+    height:200px;
+    background-color:rgba(128, 128, 128, 0.486);
     /* 투명도 */
-    opacity:0.6;  
+    /* opacity: 0.6;   */
     overflow:hidden;
 }
-/* .levelItem {
-    width: 300px;
-    height: 30px;
+ .menuItem {
+    width: 140px;
+    height: 150px;
     border: 3px solid yellow;
-    margin:0 auto -3px auto;
-    padding-left:100px;
-    background-color: blue;
+    margin: 20px auto;
+    /* padding-left:100px; */
+    /* background-color: blue;
     font: bold 24px Verdana, Georgia, Arial;
-    color: red;
+    color: red; */
+    /* z-index: 10; */
+    background-image: url("../img/Menu/버튼1(임시).jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    cursor: pointer;
+    opacity:1;
+}
+.menuItem:hover {
+    opacity: 0.7;
 }
 .levelItem input[type="radio"] {
     cursor: pointer;
     margin-right:5px;
-} */
+}
+
 div#GamePlay div {
     position:absolute;
     z-index:10;

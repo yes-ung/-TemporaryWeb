@@ -44,8 +44,10 @@ var sourceLoader={
         }
         else {
             //Show Load Process
+            //로딩창 게이지바 증가
             $('div.LoadedBlock').css('width',(Math.round(100*sourceLoader.loadedNum/sourceLoader.sourceNum)+"%"));
             //Recursion
+            //완료될때까지 0.1초 간격으로 반복실행
             setTimeout(function(){
                 sourceLoader.allOnLoad(callback);
             },100);

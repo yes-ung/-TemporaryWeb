@@ -66,12 +66,14 @@ var Game={
         Referee.alterSelectionMode();
     },
     //To replace setTimeout
+    //일정 시간지나면 작동하는 함수
     commandTimeout:function(func,delay){
         var dueTick=Game.mainTick+(delay/100>>0);
         if (!Game.commands[dueTick]) Game.commands[dueTick]=[];
         Game.commands[dueTick].push(func);
     },
     //To replace setInterval
+    //함수를 반복재생하는 함수
     commandInterval:function(func,interval){
         var funcAdjust=function(){
             func();
@@ -79,6 +81,7 @@ var Game={
         };
         Game.commandTimeout(funcAdjust,interval);
     },
+    //종족선택,변경하는 함수
     race:{
         selected:'Terran',//Terran race by default
         choose:function(race){
@@ -86,117 +89,67 @@ var Game={
             $('div#GamePlay').attr('race',race);
         }
     },
+    //게임화면 전환
     layerSwitchTo:function(layerName){
         $('div.GameLayer').hide();
         $('#'+layerName).show(); //show('slow')
     },
+ //첫 시작 1회 작동 함수
     init:function(){
         //Prevent full select
+        //게임 레이어 내에서 일반 마우스 조작 없애기
         $('div.GameLayer').on("selectstart",function(event){
             event.preventDefault();
         });
         //Bind resize canvas handler
+        //브라우저 크기에 맞춰 게임화면 조정
         window.onresize=Game.resizeWindow;
         /*window.requestAnimationFrame=requestAnimationFrame || webkitRequestAnimationFrame
          || mozRequestAnimationFrame || msRequestAnimationFrame || oRequestAnimationFrame;//Old browser compatible*/
         //Online mode
-        if (!Game.offline){
-            Game.CDN=prompt('Please input CDN location for images and audios:');
-            if (Game.CDN){
-                if (!Game.CDN.startsWith('http://')) Game.CDN='http://'+Game.CDN;
-                if (!Game.CDN.endsWith('/')) Game.CDN+='/';
-            }
-        }
+
+        //온라인 모드일시 사용자에게 첨부파일 주소를 받는 창 띄우는 함수
+        //prompt() 사용자에게 텍스트 입력받아 저장하는 브라우저 내장함수
+        // if (!Game.offline){
+        //     Game.CDN=prompt('첨부파일 주소입력:');
+        //     if (Game.CDN){
+        //         if (!Game.CDN.startsWith('http://')) Game.CDN='http://'+Game.CDN;
+        //         if (!Game.CDN.endsWith('/')) Game.CDN+='/';
+        //     }
+        // }
+
+
         //Start loading
         Game.layerSwitchTo("GameLoading");
-        //Zerg
-        sourceLoader.load("img",Game.CDN+"img/Charas/Mutalisk.png","Mutalisk");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Devourer.png","Devourer");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Guardian.png","Guardian");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Overlord.png","Overlord");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Drone.png","Drone");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Zergling.png","Zergling");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Hydralisk.png","Hydralisk");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Scourge.png","Scourge");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Lurker.png","Lurker");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Ultralisk.png","Ultralisk");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Broodling.png","Broodling");
-        sourceLoader.load("img",Game.CDN+"img/Charas/InfestedTerran.png","InfestedTerran");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Queen.png","Queen");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Defiler.png","Defiler");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Larva.png","Larva");
-        //Terran
-        sourceLoader.load("img",Game.CDN+"img/Charas/BattleCruiser.png","BattleCruiser");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Wraith.png","Wraith");
-        sourceLoader.load("img",Game.CDN+"img/Charas/SCV.png","SCV");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Civilian.png","Civilian");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Marine.png","Marine");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Firebat.png","Firebat");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Ghost.png","Ghost");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Vulture.png","Vulture");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Tank.png","Tank");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Goliath.png","Goliath");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Medic.png","Medic");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Dropship.png","Dropship");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Vessel.png","Vessel");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Valkyrie.png","Valkyrie");
+        //Zerg      
+        sourceLoader.load("img","img/Charas/Drone.png","Drone");
+        sourceLoader.load("img","img/Charas/Zergling.png","Zergling");
+        
+        //Terran       
+        sourceLoader.load("img","img/Charas/SCV.png","SCV");       
+        sourceLoader.load("img","img/Charas/Marine.png","Marine");
+       
         //Protoss
-        sourceLoader.load("img",Game.CDN+"img/Charas/Probe.png","Probe");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Zealot.png","Zealot");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Dragoon.png","Dragoon");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Templar.png","Templar");
-        sourceLoader.load("img",Game.CDN+"img/Charas/DarkTemplar.png","DarkTemplar");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Reaver.png","Reaver");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Archon.png","Archon");
-        sourceLoader.load("img",Game.CDN+"img/Charas/DarkArchon.png","DarkArchon");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Shuttle.png","Shuttle");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Observer.png","Observer");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Arbiter.png","Arbiter");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Scout.png","Scout");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Carrier.png","Carrier");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Corsair.png","Corsair");
-        //Neuture
-        sourceLoader.load("img",Game.CDN+"img/Charas/Ragnasaur.png","Ragnasaur");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Rhynsdon.png","Rhynsdon");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Ursadon.png","Ursadon");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Bengalaas.png","Bengalaas");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Scantid.png","Scantid");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Kakaru.png","Kakaru");
-        //Hero
-        sourceLoader.load("img",Game.CDN+"img/Charas/HeroCruiser.png","HeroCruiser");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Sarah.png","Sarah");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Kerrigan.png","Kerrigan");
-        sourceLoader.load("img",Game.CDN+"img/Charas/DevilHunter.png","DevilHunter");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Tassadar.png","Tassadar");
+        sourceLoader.load("img","img/Charas/Zealot.png","Zealot");
+        sourceLoader.load("img","img/Charas/Dragoon.png","Dragoon");
         //Building
-        sourceLoader.load("img",Game.CDN+"img/Charas/ZergBuilding.png","ZergBuilding");
-        sourceLoader.load("img",Game.CDN+"img/Charas/TerranBuilding.png","TerranBuilding");
-        sourceLoader.load("img",Game.CDN+"img/Charas/ProtossBuilding.png","ProtossBuilding");
+        sourceLoader.load("img","img/Charas/ZergBuilding.png","ZergBuilding");
+        sourceLoader.load("img","img/Charas/TerranBuilding.png","TerranBuilding");
+        sourceLoader.load("img","img/Charas/ProtossBuilding.png","ProtossBuilding");
         /*sourceLoader.load("audio","bgm/PointError.wav","PointError");*/
         //Map
-        sourceLoader.load("img",Game.CDN+"img/Maps/(2)Switchback.jpg","Map_Switchback");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(2)Volcanis.jpg","Map_Volcanis");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(3)Trench wars.jpg","Map_TrenchWars");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(4)Blood Bath.jpg","Map_BloodBath");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(4)Orbital Relay.jpg","Map_OrbitalRelay");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(4)TowerDefense.jpg","Map_TowerDefense");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(6)Thin Ice.jpg","Map_ThinIce");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(8)BigGameHunters.jpg","Map_BigGameHunters");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(8)TheHunters.jpg","Map_TheHunters");
-        sourceLoader.load("img",Game.CDN+"img/Maps/(8)Turbo.jpg","Map_Turbo");
-        sourceLoader.load("img",Game.CDN+"img/Maps/Map_Grass.jpg","Map_Grass");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Mud.png","Mud");
+        sourceLoader.load("img","img/Maps/(3)Trench wars.jpg","Map_TrenchWars");
         //Extra
-        sourceLoader.load("img",Game.CDN+"img/Charas/Burst.png","Burst");
-        sourceLoader.load("img",Game.CDN+"img/Charas/BuildingBurst.png","BuildingBurst");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Portrait.png","Portrait");
-        sourceLoader.load("img",Game.CDN+"img/Charas/Magic.png","Magic");
-        sourceLoader.load("img",Game.CDN+"img/Menu/ControlPanel.png","ControlPanel");
-        sourceLoader.load("img",Game.CDN+"img/Bg/GameStart.jpg","GameStart");
-        sourceLoader.load("img",Game.CDN+"img/Bg/GameWin.jpg","GameWin");
-        sourceLoader.load("img",Game.CDN+"img/Bg/GameLose.jpg","GameLose");
+        sourceLoader.load("img","img/Charas/BuildingBurst.png","BuildingBurst");
+        sourceLoader.load("img","img/Charas/Portrait.png","Portrait");
+        sourceLoader.load("img","img/Menu/ControlPanel.png","ControlPanel");
+        sourceLoader.load("img","img/Bg/GameStart.jpg","GameStart");
+        sourceLoader.load("img","img/Bg/GameWin.jpg","GameWin");
+        sourceLoader.load("img","img/Bg/GameLose.jpg","GameLose");
+        // sourceLoader.load("img","img/Charas/Mutalisk.png","테스트");
 
         sourceLoader.allOnLoad(function(){
+            //.prepend : DOM 요소에 다른 요소나 텍스트를 '맨 앞'에 추가
             $('#GameStart').prepend(sourceLoader.sources['GameStart']);
             $('#GameWin').prepend(sourceLoader.sources['GameWin']);
             $('#GameLose').prepend(sourceLoader.sources['GameLose']);
@@ -211,27 +164,22 @@ var Game={
             Game.start();
         })
     },
+    //로비화면
     start:function(){
         //Game start
-        Game.layerSwitchTo("GameStart");
-        //Init level selector
-        for (var level=1; level<=Levels.length; level++){
-            $('.levelSelectionBg').append("<div class='levelItem'>" +
-                "<input type='radio' value='"+level+"' name='levelSelect'>"+
-                (Levels[level-1].label?(Levels[level-1].label):("Level "+level))
-                +"</input></div>");
-        }
+        Game.layerSwitchTo("GameStart");       
+           $('.menuSelectionBg').append("<div class='menuItem' name='menuSelect' value='" +level+ "'></div>");
         //Wait for user select level and play game
-        $('input[name="levelSelect"]').click(function(){
-            //Prevent vibration
-            if (Game.level!=null) return;
-            Game.level=parseInt(this.value);
-            Game.play();
-        });
+         $('.menuItem[name="menuSelect"]').click(function(){
+             //버튼 여러개 한번에 실행 방지
+             if (Game.level!=null) return;
+             Game.level=parseInt(this.value);
+             Game.play();
+         });
     },
     play:function(){
         //Load level to initial when no error occurs
-        if (!(Levels[Game.level-1].load())){
+        if ((Levels[Game.level-1].load())){
             //Need Game.playerNum before expansion
             Game.expandUnitProps();
             Resource.init();
@@ -243,11 +191,13 @@ var Game={
             //Bind controller
             mouseController.toControlAll();//Can control all units
             keyController.start();//Start monitor
+            //페이지가 숨겨지면 일시정지
             Game.pauseWhenHide();//Hew H5 feature:Page Visibility
             Game.initIndexDB();//Hew H5 feature:Indexed DB
             Game.animation();
         }
     },
+    //지정된 플레이어 수만큼 객체 복사
     getPropArray:function(prop){
         var result=[];
         for (var N=0;N<Game.playerNum;N++){
@@ -255,6 +205,8 @@ var Game={
         }
         return result;
     },
+
+    //같은 종족끼리 싸움을 위해 배열추가
     //Do we need this because we only support Zerg vs Terran vs Protoss?
     expandUnitProps:function(){
         //Post-operation for all unit types, prepare basic properties for different team numbers, init in level.js
@@ -265,6 +217,7 @@ var Game={
                     unitType.prototype[prop]=Game.getPropArray(unitType.prototype[prop]);
                 }
             });
+            //유닛 투명 여부
             if (unitType.prototype.isInvisible){
                 for (var N=0;N<Game.playerNum;N++){
                     unitType.prototype['isInvisible'+N]=unitType.prototype.isInvisible;
@@ -307,10 +260,13 @@ var Game={
             }
         }
     },
+    //기존 선택부대 단축키로 저장 ex)스타의 컨트롤 숫자 부대지정
+    // 배열복사유틸함수  _$.mixin([], Game.allSelected) 
     addSelectedIntoTeam:function(teamNum){
         //Build a new team
         Game.teams[teamNum]=_$.mixin([],Game.allSelected);
     },
+    //부대지정해놨던 유닛 불러오기
     callTeam:function(teamNum){
         var team=_$.mixin([],Game.teams[teamNum]);
         //When team already exist
@@ -330,12 +286,14 @@ var Game={
             }
         }
     },
+    //현재 선택된 유닛들 선택해제
     unselectAll:function(){
         //Unselect all
         var units=Unit.allUnits.concat(Building.allBuildings);
         units.forEach(function(chara){chara.selected=false});
         Game.addIntoAllSelected([],true);
     },
+    //드래그해서 선택하기
     multiSelectInRect:function(){
         Game.unselectAll();
         //Multi select in rect
@@ -350,6 +308,10 @@ var Game={
         else Game.changeSelectedTo({});
         Game.addIntoAllSelected(inRectUnits,true);
     },
+
+    //클릭한 위치에서 가장 가까운 유닛 선택
+    // 특정 조건(아군/적군/건물/공중 등)에 따라 필터링하고
+    // 해당 위치에 가장 가까운 객체를 하나 선택해 반환합니다
     getSelectedOne:function(clickX,clickY,isEnemyFilter,unitBuildingFilter,isFlyingFilter,customFilter){
         var distance=function(chara){
             return (clickX-chara.posX())*(clickX-chara.posX())+(clickY-chara.posY())*(clickY-chara.posY());//Math.pow2
@@ -400,6 +362,10 @@ var Game={
         if (!selectedOne) selectedOne={};
         return selectedOne;
     },
+
+//     지정 좌표 주변의 객체(유닛/건물)를 탐색하고
+//     다양한 조건(적군/아군, 공중 여부 등)에 따라 필터링한 뒤
+//     해당 범위 내에 있는 객체 목록을 배열로 반환합니다.
     getInRangeOnes:function(clickX,clickY,range,isEnemyFilter,unitBuildingFilter,isFlyingFilter,customFilter){
         //Initial
         var selectedOnes=[],charas=[];
@@ -435,6 +401,7 @@ var Game={
             });
         }
         //customFilter is filter function
+        //사용자 지정 조건, 복잡한 조건구현 가능
         if (customFilter!=null){
             charas=charas.filter(customFilter);
         }
@@ -445,11 +412,16 @@ var Game={
         return selectedOnes;
     },
     //For test use
+// Unit.allUnits와 Building.allBuildings에 있는 모든 객체들 중
+// chara.selected === true인 것들만 배열로 반환합니다.
     getSelected:function(){
         return Unit.allUnits.concat(Building.allBuildings).filter(function(chara){
             return chara.selected;
         });
     },
+
+// 선택된 유닛(Game.selectedUnit)이 살아있다면,
+// 게임 UI에 유닛 정보(초상화, 체력/마나/실드, 공격력, 방어력, 킬수 등)를 HTML 요소로 업데이트하여 보여줍니다.
     showInfoFor:function(chara){
         //Show selected living unit info
         if (Game.selectedUnit instanceof Gobj && Game.selectedUnit.status!="dead") {
@@ -568,9 +540,16 @@ var Game={
             $('div.panel_Info>div').hide();
         }
     },
+
+// 정보 패널 UI를 즉시 새로고침(업데이트) 합니다. 실시간 변하는거거
     refreshInfo:function(){
         Game.showInfoFor(Game.selectedUnit);
     },
+
+// 인게임에서 특정 유닛이나 건물을 새롭게 선택하면
+// 내부 선택 상태를 업데이트하고
+// 해당 유닛 전용 버튼 UI를 세팅하고
+// 선택 표시 및 정보창을 갱신합니다.
     changeSelectedTo:function(chara){
         Game.selectedUnit=chara;
         Button.equipButtonsFor(chara);
@@ -579,6 +558,8 @@ var Game={
         }
         Game.showInfoFor(chara);
     },
+
+    //유닛 화면에 구현
     draw:function(chara){
         //Can draw units and no-rotate bullets
         if (!(chara instanceof Gobj)) return;//Will only show Gobj
