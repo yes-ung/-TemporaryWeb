@@ -146,6 +146,7 @@ var Game={
         sourceLoader.load("img","img/Bg/GameStart.jpg","GameStart");
         sourceLoader.load("img","img/Bg/GameWin.jpg","GameWin");
         sourceLoader.load("img","img/Bg/GameLose.jpg","GameLose");
+        sourceLoader.load("img","img/Bg/스테이지(임시).jpg","GameStage");
         // sourceLoader.load("img","img/Charas/Mutalisk.png","테스트");
 
         sourceLoader.allOnLoad(function(){
@@ -153,6 +154,7 @@ var Game={
             $('#GameStart').prepend(sourceLoader.sources['GameStart']);
             $('#GameWin').prepend(sourceLoader.sources['GameWin']);
             $('#GameLose').prepend(sourceLoader.sources['GameLose']);
+            $('#GameStage').prepend(sourceLoader.sources['GameStage']);
             $('#GamePlay>canvas').attr('width',Game.HBOUND);//Canvas width adjust
             $('#GamePlay>canvas').attr('height',Game.VBOUND-Game.infoBox.height+5);//Canvas height adjust
             for (var N=1;N<=9;N++){
@@ -161,21 +163,48 @@ var Game={
             /*//Test image effect
             AlloyImage(sourceLoader.sources['Wraith']).act("setHSI",100,0,0,false).replace(sourceLoader.sources['Wraith']);
             AlloyImage(sourceLoader.sources['BattleCruiser']).act("setHSI",100,0,0,false).replace(sourceLoader.sources['BattleCruiser']);*/
-            Game.start();
-        })
+            
+            // Game.layerSwitchTo("GameStart");
+            
+            Game.layerSwitchTo("GameStage");
+              // 스테이지창 슬라이더 선언
+              function initStageSlider() {
+                const $slider = $('.StageButtonSlider');
+          
+                if (!$slider.hasClass('slick-initialized')) {
+                  $slider.slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                  //   centerMode: true,
+                  // centerPadding: '0px', // 여백 없게
+                    arrows: true,
+                    infinite: false
+                  });
+                } else {
+                  $slider.slick('setPosition');
+                }
+              }
+          
+              $(document).ready(function () {
+                initStageSlider();
+              });
+          
+            //   확인끝나면 이거 실행
+                //   Game.start();
+         })
     },
     //로비화면
     start:function(){
         //Game start
         Game.layerSwitchTo("GameStart");       
-           $('.menuSelectionBg').append("<div class='menuItem' name='menuSelect' value='" +level+ "'></div>");
+           $('.menuSelectionBg').append("<div class='BackButton' name='menuSelect' onClick=Game.moveGameStage >스테이지</div>");
         //Wait for user select level and play game
-         $('.menuItem[name="menuSelect"]').click(function(){
-             //버튼 여러개 한번에 실행 방지
-             if (Game.level!=null) return;
-             Game.level=parseInt(this.value);
-             Game.play();
-         });
+        //  $('.menuItem[name="menuSelect"]').click(function(){
+        //      //버튼 여러개 한번에 실행 방지
+        //      if (Game.level!=null) return;
+        //      Game.level=parseInt(this.value);
+        //      Game.play();
+        //  });
     },
     play:function(){
         //Load level to initial when no error occurs
@@ -1173,5 +1202,13 @@ var Game={
             });
             db.close();
         }
+    },
+    // @@@@@@ 새로 추가한 함수들@@@@@@
+    moveGameLobby:function(){
+        Game.layerSwitchTo("GameStart");
+
     }
+
+    
 };
+

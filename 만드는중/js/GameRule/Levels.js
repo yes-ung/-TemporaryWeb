@@ -10,7 +10,7 @@ var Levels=[
             if (!Game.replayFlag) Game.team=Math.random()*2>>0;
             Game.race.choose(races[Game.team]);
             Map.offsetX=startPoint[Game.team].x;
-            Map.offsetY=startPoint[Game.team].y;
+            Map.offsetY=startPoint[Game.team].y; 
             //Load units
             new Terran.Marine({x:100,y:100});
             new Terran.Marine({x:200,y:100});

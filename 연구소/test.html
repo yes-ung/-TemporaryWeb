@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>테스트</title>
+  <link rel="stylesheet" href="Utils/slick.css" />
+  <link rel="stylesheet" href="css/style2.css" />
+  <!-- <style>
+    /* 최소한의 슬라이드 스타일 예시 */
+    .StageButtonWapper {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .StageButton {
+      width: 200px;
+      height: 150px;
+      background-color: #ccc;
+      background-size: cover;
+      background-position: center;
+      margin: 0 10px;
+    }
+
+    .GameLayer {
+      display: none; /* 기본은 숨겨져 있음 */
+    }
+
+    #GameStage {
+      display: block; /* 테스트용으로 표시 */
+    }
+  </style> -->
+</head>
+<body>
+
+  <!-- 게임 시작 화면 -->
+  <div id="GameStart" class="GameLayer">
+    <div class="menuSelectionBg"></div>
+  </div>
+
+  <!-- 스테이지 선택 화면 -->
+  <div id="GameStage" class="GameLayer">
+    <div class="StageButtonWapper">
+      <div class="StageButtonSlider">
+        <div class="StageButton StageButton1">1</div>
+        <div class="StageButton StageButton2">2</div>
+        <div class="StageButton StageButton3">3</div>
+        <div class="StageButton StageButton1">4</div>
+        <div class="StageButton StageButton2">5</div>
+        <div class="StageButton StageButton3">6</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 스크립트 -->
+  <script src="Utils/jquery.min.js"></script>
+  <script src="Utils/slick.min.js"></script>
+  <script>
+    function initStageSlider() {
+      const $slider = $('.StageButtonSlider');
+
+      if (!$slider.hasClass('slick-initialized')) {
+        $slider.slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+           centerMode: true,
+            centerPadding: '0px', // 여백 없게
+          arrows: true,
+          infinite: false
+        });
+      } else {
+        $slider.slick('setPosition'); // 보일 때 레이아웃 재정렬
+      }
+    }
+
+    // 페이지 로드 후 실행
+    $(document).ready(function () {
+      // GameStage가 보이는 시점에만 슬라이더 초기화
+      $('#GameStage').fadeIn(300, function () {
+        initStageSlider();
+      });
+    });
+  </script>
+
+</body>
+</html>

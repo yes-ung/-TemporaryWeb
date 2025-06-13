@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>슬릭 슬라이더 테스트</title>
+
+  <!-- ✅ Slick CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .GameLayer {
+      display: none;
+      padding: 30px;
+      background: #111;
+    }
+
+    #GameStage {
+      display: block; /* 테스트용 */
+      background-color: blue;
+    }
+
+    .StageButtonWapper {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      background-color: red;
+    }
+
+    .StageButton {
+      width: 1000px;
+      height: 150px;
+      background-color: #666;
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      line-height: 150px;
+      border-radius: 8px;
+      box-sizing: border-box;
+      margin: 0 3vw;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Stage 화면 -->
+  <div id="GameStage" class="GameLayer">
+    <div class="StageButtonWapper">
+      <div class="StageButtonSlider">
+        <div class="StageButton">1</div>
+        <div class="StageButton">2</div>
+        <div class="StageButton">3</div>
+        <div class="StageButton">4</div>
+        <div class="StageButton">5</div>
+        <div class="StageButton">6</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- ✅ Slick JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script>
+    function initStageSlider() {
+      const $slider = $('.StageButtonSlider');
+
+      if (!$slider.hasClass('slick-initialized')) {
+        $slider.slick({
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        //   centerMode: true,
+        // centerPadding: '0px', // 여백 없게
+          arrows: true,
+          infinite: false
+        });
+      } else {
+        $slider.slick('setPosition');
+      }
+    }
+
+    $(document).ready(function () {
+      initStageSlider();
+    });
+  </script>
+
+</body>
+</html>

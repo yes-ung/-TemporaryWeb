@@ -110,16 +110,15 @@ div.GameLayer{
 }
 /* 스테이지 화면   아래 */
 .StageButtonWapper{
-    padding: 35vh 0;
     width: 100%;
     height: 100%;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-div#GameStage div.StageButton{
-    /* 이 슬라이드 플러그인은 가로 지정이 안됨 */
-    height: 100px;
+div#GameStage div.StageButton {
+    width: 100px; height: 100px;
     box-sizing: border-box;
-    margin: 0 3vw;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -137,24 +136,6 @@ div#GameStage div.StageButton2 {
 div#GameStage div.StageButton3 {
     background-image: url("../img/Menu/스테이지버튼3(임시).png");
 }
-
-div#GameStage  div.BackButton{
-    position: absolute;
-    right: 20px;
-    bottom:20px;
-   width: 100px; height: 60px;
-   font-size: 20px;
-   border: 1px solid skyblue;
-   display: flex;
-  justify-content: center; /* 가로 중앙 */
-  align-items: center;     /* 세로 중앙 */
- }
- div#GameStage  div.BackButton:hover{
-    background-color: lightgray;
- }
- div#GameStage  div.BackButton:active{
-    background-color: gray;
- }
 /* 스테이지 화면   위 */
 
 div#GamePlay div {
