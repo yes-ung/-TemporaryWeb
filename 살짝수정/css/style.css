@@ -137,6 +137,15 @@ div#GameStage div.StageButton2 {
 div#GameStage div.StageButton3 {
     background-image: url("../img/Menu/스테이지버튼3(임시).png");
 }
+div#GameStage div.StageButton4 {
+    background-image: url("../img/Menu/스테이지버튼1(임시).png");
+}
+div#GameStage div.StageButton5 {
+    background-image: url("../img/Menu/스테이지버튼1(임시).png");
+}
+div#GameStage div.StageButton6 {
+    background-image: url("../img/Menu/스테이지버튼1(임시).png");
+}
 
 div#GameStage  div.BackButton{
     position: absolute;

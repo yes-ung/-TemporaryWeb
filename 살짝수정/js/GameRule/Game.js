@@ -171,7 +171,7 @@ var Game={
 
              //스테이지 슬라이더 버튼 생성 및 실행 연결   
              for (var level=1; level<=Levels.length; level++){
-            $('.StageButtonSlider').append('<div class="StageButtonCover"><div class="StageButton'+level+'  StageButton" value="'+level+'"></div></div>');
+            $('.StageButtonSlider').append('<div class="StageButtonCover"><div class="StageButton'+level+'  StageButton" data-value="'+level+'"></div></div>');
         }
               // 스테이지창 슬라이더 선언
               function initStageSlider() {
@@ -197,7 +197,10 @@ var Game={
               $('.StageButton').click(function(){
              //버튼 여러개 한번에 실행 방지
             //  if (Game.level!=null) return;
-             Game.level=parseInt(this.value);
+            console.log("눌러짐");
+            
+             Game.level = parseInt($(this).data("value"));
+              console.log("선택된 레벨",Game.level);
              Game.play();
          });
 
@@ -219,11 +222,12 @@ var Game={
         //      Game.play();
         //  });
     },
+    // (Levels[Game.level-1].load())
     play:function(){
         //Load level to initial when no error occurs
-        if ((Levels[Game.level-1].load())){
+        if (true){
             //Need Game.playerNum before expansion
-            Game.expandUnitProps();
+            // Game.expandUnitProps();
             Resource.init();
             //Game background
             Game.layerSwitchTo("GamePlay");
@@ -1027,6 +1031,7 @@ var Game={
             },Game._frameInterval);
         }
         else Game.startAnimation();
+        // Game.startAnimation(); // 임시추가(테스트)
     },
     stopAnimation:function(){
         if (Game._timer!=-1) clearInterval(Game._timer);

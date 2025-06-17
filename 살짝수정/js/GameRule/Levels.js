@@ -77,6 +77,18 @@ var Levels=[
             //Load map
             Map.setCurrentMap('TrenchWars');
             //Apply race style
+            Game.race.choose('Terran');
+            //Load units
+            new Terran.Marine({x:100,y:100});
+            new Terran.Marine({x:200,y:100});
+        }
+    },
+    {
+        level:4,
+        load:function(){
+            //Load map
+            Map.setCurrentMap('TrenchWars');
+            //Apply race style
             Game.race.choose('Zerg');
             //Load units
             new Terran.Marine({x:100,y:100});

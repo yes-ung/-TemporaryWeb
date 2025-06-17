@@ -123,8 +123,15 @@ var Map={
         Game.backCxt.save();
         Game.backCxt.beginPath();
         //Create fill style for mud
-        var mudPattern=Game.backCxt.createPattern(sourceLoader.sources['Mud'],"repeat");
-        Game.backCxt.fillStyle=mudPattern;
+        // 저그 클립 만드는 건데 없으므로 기본색상으로
+    var mudImg = sourceLoader.sources['Mud'];
+    if (mudImg) {
+        var mudPattern = Game.backCxt.createPattern(mudImg, "repeat");
+        Game.backCxt.fillStyle = mudPattern;
+    } else {
+        console.warn("⚠ Mud 이미지 없음, 기본 색상 사용");
+        Game.backCxt.fillStyle = "#443322";  // 대체 색상
+    }
         Building.allBuildings.filter(function(chara){
             return (chara instanceof Building.ZergBuilding) && !chara.noMud && chara.insideScreen();
         }).forEach(function(chara){
