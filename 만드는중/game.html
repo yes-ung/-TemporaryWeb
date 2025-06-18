@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/portraitStyle.css" />  
   </head>
   <body>
+    <div id="pageCover">
     <!-- 게임로딩화면 -->
     <div id="GameLoading" class="GameLayer">
       <div class="LoadingDiv">
@@ -37,6 +38,12 @@
       <div class="BarrackImg"></div>
       <div role="button" class="BackButton" onClick="Game.moveGameLobby()">뒤로가기</div>
      </div>
+     <!-- 모집화면,카드뽑기화면 -->
+      <div id="GameRecruitment" class="GameLayer">
+        <div class="RecruitmentBenner1"><div class="RecruitmentBenner1Button">일반모집</div></div>
+        <div class="RecruitmentBenner2"><div class="RecruitmentBenner2Button">특수모집</div></div>
+        <div role="button" class="BackButton" onClick="Game.moveGameLobby()">뒤로가기</div>
+      </div>
     <!-- 플레이 화면 -->
     <div id="GamePlay" class="GameLayer" race="Terran">
       <canvas id="backCanvas"></canvas>
@@ -121,6 +128,10 @@
           <span class="magicNum"></span>
         </div>
       </div>
+    </div>
+
+
+
     </div>
 
     <script src="Utils/jquery.min.js"></script>

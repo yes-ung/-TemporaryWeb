@@ -5,7 +5,15 @@ body{
     /*min-width:800px;
     min-height:400px;*/
 }
+/* div#pageCover{
+     width:100%;
+    height:100%;
+    position:absolute;
+    
+} */
 div.GameLayer{
+    max-width: 700px;
+    max-height: 1400px;
     width:100%;
     height:100%;
     position:absolute;
@@ -90,29 +98,35 @@ div#GameStart  .menuButton{
     position:absolute;
     width: 140px;
     height: 150px;
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
     margin: 20px auto;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
     cursor: pointer;
+    display: flex;
+    justify-content: center;   /* 가로 가운데 */
+    align-items: center;       /* 세로 가운데 */
+    font:normal 25px Georgia,Verdana;
 }
  .goStageButton {
     
     left:10px;
     bottom:0;
-    background-image: url("../img/Menu/버튼1(임시).jpg");
+    background-image: url("../img/Menu/기본버튼.png");
 }
 .goStageButton:hover {
-    opacity: 0.7;
+    background-image: url("../img/Menu/기본버튼클릭.png");
+    /* opacity: 0.7; */
 }
 .goBarracksButton {
     right:10px;
     bottom:0;
-    background-image: url("../img/Menu/버튼2(임시).jpg");
+    background-image: url("../img/Menu/기본버튼.png");
 }
 .goBarracksButton:hover {
-    opacity: 0.7;
+    background-image: url("../img/Menu/기본버튼클릭.png");
+    /* opacity: 0.7; */
 }
 /* .levelItem input[type="radio"] {
     cursor: pointer;
@@ -121,7 +135,11 @@ div#GameStart  .menuButton{
 .goRecruitmentButton{
     right: 160px;
     bottom: 0;
-    background-image: url("../img/Menu/버튼3(임시).jpg");
+    background-image: url("../img/Menu/기본버튼.png");
+}
+.goRecruitmentButton:hover {
+    background-image: url("../img/Menu/기본버튼클릭.png");
+    /* opacity: 0.7; */
 }
 /* 로비 화면 위 */
 
@@ -189,6 +207,7 @@ div#GameStage  div.BackButton{
     background-color: gray;
  }
 /* 스테이지 화면   위 */
+
 /* 병영관리 화면 아래 */
 
 div#GameBarracks  div.BackButton{
@@ -209,6 +228,76 @@ div#GameBarracks  div.BackButton{
     background-color: gray;
  }
 /* 병영관리 화면 위 */
+
+/* 모집화면 아래 */
+div#GameRecruitment  div.BackButton{
+    position: absolute;
+    right: 20px;
+    bottom:20px;
+   width: 100px; height: 60px;
+   font-size: 20px;
+   border: 1px solid skyblue;
+   display: flex;
+  justify-content: center; /* 가로 중앙 */
+  align-items: center;     /* 세로 중앙 */
+ }
+.RecruitmentBenner1{   
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    border: 1px solid red;
+    
+
+}
+.RecruitmentBenner1Button{
+    position: absolute;
+    right: 20px;
+    bottom:20px;
+   width: 100px; height: 60px;
+   font-size: 20px;
+   border: 1px solid skyblue;
+   display: flex;
+  justify-content: center; /* 가로 중앙 */
+  align-items: center;     /* 세로 중앙 */
+
+}
+.RecruitmentBenner2{
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    height: 40%;
+    border: 1px solid blue;
+    
+
+}
+.RecruitmentBenner2Button{
+    position: absolute;
+    right: 20px;
+    bottom:20px;
+   width: 100px; height: 60px;
+   font-size: 20px;
+   border: 1px solid skyblue;
+   display: flex;
+  justify-content: center; /* 가로 중앙 */
+  align-items: center;     /* 세로 중앙 */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 모집화면 위 */
+
 div#GamePlay div {
     position:absolute;
     z-index:10;

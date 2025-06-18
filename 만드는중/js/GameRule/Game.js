@@ -148,6 +148,7 @@ var Game={
         sourceLoader.load("img","img/Bg/GameLose.jpg","GameLose");
         sourceLoader.load("img","img/Bg/스테이지(임시).jpg","GameStage");
         sourceLoader.load("img","img/Bg/병영관리(임시).jpg","GameBarracks");
+        sourceLoader.load("img","img/Bg/모집화면(임시).jpg","GameRecruitment");
         // sourceLoader.load("img","img/Charas/Mutalisk.png","테스트");
 
         sourceLoader.allOnLoad(function(){
@@ -157,6 +158,7 @@ var Game={
             $('#GameLose').prepend(sourceLoader.sources['GameLose']);
             $('#GameStage').prepend(sourceLoader.sources['GameStage']);
             $('#GameBarracks').prepend(sourceLoader.sources['GameBarracks']);
+            $('#GameRecruitment').prepend(sourceLoader.sources['GameRecruitment']);
             $('#GamePlay>canvas').attr('width',Game.HBOUND);//Canvas width adjust
             $('#GamePlay>canvas').attr('height',Game.VBOUND-Game.infoBox.height+5);//Canvas height adjust
             for (var N=1;N<=9;N++){
@@ -214,9 +216,9 @@ var Game={
     start:function(){
         //Game start
         Game.layerSwitchTo("GameStart");       
-           $('.menuSelectionBg').append('<div role="button" class="goStageButton  menuButton" onClick="Game.moveGameStage()"></div>');
-           $('.menuSelectionBg').append('<div role="button" class="goBarracksButton  menuButton" onClick="Game.moveGameBarracks()"></div>');
-           $('.menuSelectionBg').append('<div role="button" class="goRecruitmentButton  menuButton" onClick="Game.moveGameRecruitment()"></div>');
+           $('.menuSelectionBg').append('<div role="button" class="goStageButton  menuButton" onClick="Game.moveGameStage()">전투</div>');
+           $('.menuSelectionBg').append('<div role="button" class="goBarracksButton  menuButton" onClick="Game.moveGameBarracks()">병영관리</div>');
+           $('.menuSelectionBg').append('<div role="button" class="goRecruitmentButton  menuButton" onClick="Game.moveGameRecruitment()">모집</div>');
         //Wait for user select level and play game
         //  $('.menuItem[name="menuSelect"]').click(function(){
         //      //버튼 여러개 한번에 실행 방지
@@ -1239,6 +1241,9 @@ var Game={
     moveGameBarracks:function(){
         Game.layerSwitchTo("GameBarracks");
 
+    },
+    moveGameRecruitment:function(){
+        Game.layerSwitchTo("GameRecruitment");
     }
 
     
