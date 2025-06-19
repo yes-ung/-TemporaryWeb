@@ -81,6 +81,36 @@ div.GameLayer{
     background-color:red;
 }
 
+/* 공통 사용 UI 이미지 아래 */
+.UiBack1{ 
+    /* position:absolute;   */
+   
+background-image: url("../img/Menu/버튼배경.png") ;
+}
+.BackButton{
+    position: absolute;
+    right: 20px;
+    bottom:20px;
+    width: 100px; height: 60px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center; /* 가로 중앙 */
+    align-items: center;     /* 세로 중앙 */
+    background-image: url("../img/Menu/기본버튼.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.BackButton:hover{
+    background-image: url("../img/Menu/기본버튼클릭.png");
+}
+.BackButton:active{
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
+}
+/* 공통 사용 UI 이미지 위 */
+
  /* 로비화면 아래 */
 /* 로비화면 메뉴버튼 */
 .menuSelectionBg{
@@ -89,7 +119,7 @@ div.GameLayer{
     bottom:0;
     width:100%;
     height:200px;
-    background-color:rgba(128, 128, 128, 0.486);
+    /* background-color:rgba(128, 128, 128, 0.486); */
     /* 투명도 */
     /* opacity: 0.6;   */
     overflow:hidden;
@@ -119,6 +149,10 @@ div#GameStart  .menuButton{
     background-image: url("../img/Menu/기본버튼클릭.png");
     /* opacity: 0.7; */
 }
+.goStageButton:active {
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
+}
 .goBarracksButton {
     right:10px;
     bottom:0;
@@ -127,6 +161,10 @@ div#GameStart  .menuButton{
 .goBarracksButton:hover {
     background-image: url("../img/Menu/기본버튼클릭.png");
     /* opacity: 0.7; */
+}
+.goBarracksButton:active {
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
 }
 /* .levelItem input[type="radio"] {
     cursor: pointer;
@@ -140,6 +178,10 @@ div#GameStart  .menuButton{
 .goRecruitmentButton:hover {
     background-image: url("../img/Menu/기본버튼클릭.png");
     /* opacity: 0.7; */
+}
+.goRecruitmentButton:active {
+    background-image: url("../img/Menu/기본버튼.png");
+    opacity: 0.7;
 }
 /* 로비 화면 위 */
 
@@ -189,58 +231,22 @@ div#GameStage div.StageButton6 {
     background-image: url("../img/Menu/스테이지버튼6(임시).png");
 }
 
-div#GameStage  div.BackButton{
+div#GameStage .UiBack1{
     position: absolute;
-    right: 20px;
-    bottom:20px;
-   width: 100px; height: 60px;
-   font-size: 20px;
-   border: 1px solid skyblue;
-   display: flex;
-  justify-content: center; /* 가로 중앙 */
-  align-items: center;     /* 세로 중앙 */
- }
- div#GameStage  div.BackButton:hover{
-    background-color: lightgray;
- }
- div#GameStage  div.BackButton:active{
-    background-color: gray;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
  }
 /* 스테이지 화면   위 */
 
 /* 병영관리 화면 아래 */
 
-div#GameBarracks  div.BackButton{
-    position: absolute;
-    right: 20px;
-    bottom:20px;
-   width: 100px; height: 60px;
-   font-size: 20px;
-   border: 1px solid skyblue;
-   display: flex;
-  justify-content: center; /* 가로 중앙 */
-  align-items: center;     /* 세로 중앙 */
- }
- div#GameBarracks  div.BackButton:hover{
-    background-color: lightgray;
- }
- div#GameBarracks  div.BackButton:active{
-    background-color: gray;
- }
+
+ 
 /* 병영관리 화면 위 */
 
 /* 모집화면 아래 */
-div#GameRecruitment  div.BackButton{
-    position: absolute;
-    right: 20px;
-    bottom:20px;
-   width: 100px; height: 60px;
-   font-size: 20px;
-   border: 1px solid skyblue;
-   display: flex;
-  justify-content: center; /* 가로 중앙 */
-  align-items: center;     /* 세로 중앙 */
- }
+
 .RecruitmentBenner1{   
     position: absolute;
     width: 100%;
