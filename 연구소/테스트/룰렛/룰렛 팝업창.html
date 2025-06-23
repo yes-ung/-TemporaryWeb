@@ -23,7 +23,8 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 400px;
+  height: 500px;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -34,14 +35,14 @@
   font-weight: bold;
   padding-bottom: 10px;
   cursor: move;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* 닫기 버튼 */
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 0px;
+  right: 5px;
   font-size: 24px;
   cursor: pointer;
 }
@@ -148,14 +149,14 @@
 }
 .confetti-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -135px;
+  left: -20px;
+  width: 335px;
+  height: 450px;
   pointer-events: none;
   overflow: hidden;
   z-index: 50;
-  border: 5px solid red;
+  /* border: 5px solid red; */
 }
 
 .confetti {
@@ -181,7 +182,7 @@
     opacity: 1;
   }
   40% {
-    transform: translateY(-200px) scale(1.2) rotate(360deg);
+    transform: translateY(-300px) scale(1.2) rotate(360deg);
   }
 
   100% {
@@ -199,16 +200,8 @@
   <div class="popup-content" id="popupContent">
     <div id="popupHeader" class="popup-header roulette_title">⭐신규가입자 한정⭐</div>
     <span class="close-btn" onclick="closePopup()">&times;</span>
-    <p>지금 가입하면 10% 할인 쿠폰을 드려요!</p>
-    <a href="/event" class="popup-link">이벤트 바로가기</a>
-  </div>
-</div>
-
-<div class="roulette-content">
-  <div class="roulette_title">⭐신규가입자 한정⭐</div>
-  <div class="roulette_title2">특별 이벤트!!</div>
-
-  <div class="wheel-container">
+    <div class="roulette_title2">특별 이벤트!!</div>
+      <div class="wheel-container">
     <div class="wheel" id="wheel">
                     <!-- 경품 이미지 넣는곳 -->
     <div class="segment" style="--i: 0;"><img src="img1.png" /></div>
@@ -225,6 +218,31 @@
     <div class="confetti-container" id="confetti-container"></div>
    </div>
   </div>
+    <!-- <a href="/event" class="popup-link">이벤트 바로가기</a> -->
+  </div>
+</div>
+
+<!-- <div class="roulette-content">
+  <div class="roulette_title">⭐신규가입자 한정⭐</div>
+  <div class="roulette_title2">특별 이벤트!!</div>
+
+  <div class="wheel-container">
+    <div class="wheel" id="wheel"> -->
+                    <!-- 경품 이미지 넣는곳 -->
+    <!-- <div class="segment" style="--i: 0;"><img src="img1.png" /></div>
+    <div class="segment" style="--i: 1;"><img src="img2.png" /></div>
+    <div class="segment" style="--i: 2;"><img src="img3.png" /></div>
+    <div class="segment" style="--i: 3;"><img src="img4.png" /></div>
+    <div class="segment" style="--i: 4;"><img src="img5.png" /></div>
+    <div class="segment" style="--i: 5;"><img src="img6.png" /></div>
+    </div>
+    <div class="pointer"></div>
+    <button id="spinBtn">돌리기!</button>
+    <div id="result">🎉 당첨 결과</div> -->
+    <!-- 꽃가루 효과를 담는 영역 -->
+    <!-- <div class="confetti-container" id="confetti-container"></div>
+   </div>
+  </div> -->
 
   
 <script>
@@ -272,10 +290,10 @@
   // 페이지가 로드되면 팝업 보이기
   window.onload = function() {
     // 쿠키 확인해서 이미 본 사용자는 생략 (선택 사항)
-    if (!getCookie("eventPopupClosed")) {
-      document.getElementById("eventPopup").style.display = "block";
-    }
-    // document.getElementById("eventPopup").style.display = "block";//생략안하면 여기만 사용
+    // if (!getCookie("eventPopupClosed")) {
+    //   document.getElementById("eventPopup").style.display = "block";
+    // }
+    document.getElementById("eventPopup").style.display = "block";//생략안하면 여기만 사용
   };
 
   function closePopup() {
@@ -345,9 +363,9 @@
     confetti.classList.add('confetti');
 
     // 위치와 애니메이션 타이밍 랜덤
-    confetti.style.left = Math.random() * 10 + 'px';
-    confetti.style.animationDelay = (Math.random() * 0.5) + 's';
-    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    confetti.style.left = (1-i) * 200-100 + 'px';
+    // confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+    // confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
 
     container.appendChild(confetti);
 
