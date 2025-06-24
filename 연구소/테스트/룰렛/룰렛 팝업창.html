@@ -25,7 +25,7 @@
   border-radius: 10px;
   width: 400px;
   height: 500px;
-  top: 30%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -131,6 +131,11 @@
         transform-origin: 0% 0%;
         transform: rotate(calc(var(--i) * 60deg)); /* 4칸이면 90도씩 회전 */
     }
+    .segment img{
+      position: absolute;
+      top: 70px;
+      width: 80px; height: 40px;
+    }
 #result {
   position: absolute;
   top: 50%;
@@ -182,11 +187,11 @@
     opacity: 1;
   }
   40% {
-    transform: translateY(-300px) scale(1.2) rotate(360deg);
+    transform: translateY(-300px) scale(1.2) rotate(180deg);
   }
 
   100% {
-    transform: translateY(500px) scale(0.7) rotate(360deg);
+    transform: translateY(500px) scale(0.7) rotate(180deg);
      opacity: 1; 
   }
 }
@@ -204,11 +209,11 @@
       <div class="wheel-container">
     <div class="wheel" id="wheel">
                     <!-- 경품 이미지 넣는곳 -->
-    <div class="segment" style="--i: 0;"><img src="img1.png" /></div>
+    <div class="segment" style="--i: 0;"><img src="룰렛이미지/상품권낱개1.png" /></div>
     <div class="segment" style="--i: 1;"><img src="img2.png" /></div>
-    <div class="segment" style="--i: 2;"><img src="img3.png" /></div>
+    <div class="segment" style="--i: 2;"><img src="룰렛이미지/상품권낱개1.png" /></div>
     <div class="segment" style="--i: 3;"><img src="img4.png" /></div>
-    <div class="segment" style="--i: 4;"><img src="img5.png" /></div>
+    <div class="segment" style="--i: 4;"><img src="룰렛이미지/상품권낱개1.png" /></div>
     <div class="segment" style="--i: 5;"><img src="img6.png" /></div>
     </div>
     <div class="pointer"></div>
